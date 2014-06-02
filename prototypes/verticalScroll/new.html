@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Test iframe</title>
+		<link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.css" rel="stylesheet" type="text/css" /> 
+        <style>
+        
+        .app-bg{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            
+            background-repeat:no-repeat;
+            background-size:auto 100%;
+            background-position:center center;
+            background-attachment:fixed;
+            
+            -webkit-filter: blur(3px);
+            filter: blur(3px);
+        }
+        
+        .app-content{
+            width:300px;
+            height:350px;
+            position:relative;
+            margin:40px auto;
+            border:none;
+            
+            border-radius:8px;
+            overflow:hidden;
+        }
+        
+        .hide{
+            opacity:0;
+            -webkit-transform: scale(0.1,0.1);
+        }
+        .show{
+            
+            -webkit-transition: opacity 1s ease 0s; /* For Safari 3.1 to 6.0 */
+            transition: opacity 1s ease 0s,-webkit-transform 300ms ease 0s;
+            
+            border:none;
+         
+        }
+        
+        iframe{
+            border-radius:8px;
+            height:100%;
+            width:100%;
+            border:none;
+        }
+        
+        </style>
+	</head>
+	<body>
+	    <div class="app-bg" style="background-image:url(http://rachelnabors.com/alice-in-videoland/book/img/i_alice-in-videoland.png)"></div>
+	    
+		<div class="app-content hide">
+		    <iframe class="app-content-iframe" src="http://rachelnabors.com/alice-in-videoland/book"></iframe>
+		</div>
+		
+		<div class="app-content hide">
+		    <iframe class="app-content-iframe" src="http://true212.com/"></iframe>
+		</div>
+		
+		<div class="app-content hide">
+		    <iframe class="app-content-iframe" src="http://www.worldinmylens.com/"></iframe>
+		</div>
+		
+		<div class="app-content hide">
+		    <iframe class="app-content-iframe" src="http://www.trafficlight.se/"></iframe>
+		</div>
+		
+		<script>
+		
+		    var contents = document.querySelectorAll('.app-content');
+		    
+		    for (var i = 0, len = contents.length; i < len; i++) {
+                
+                var contentEl = contents[i];
+                
+                loadContent(contentEl);
+                    
+                
+            }
+            
+            function loadContent(contentEl){
+                
+                var frameEl = contentEl.children[0];
+                
+                frameEl.onload = function() {
+    		        console.log("iframe loaded");
+    		        contentEl.className = "app-content show";
+    		    }
+                
+            }
+		    
+		</script>
+	</body>
+</html>
